@@ -1,0 +1,45 @@
+.stats {
+    color: white;
+    background: #011321;
+    height: 100vh;
+}
+
+.stats-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-size: calc(15px + 0.390625vh);
+    font-weight: 700;
+}
+
+.stats .solde {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #445D48;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.solde ul {
+    margin: 0;
+    padding: 0;
+}
+ 
+.stats .pronos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #445D48;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+li {
+    list-style-type: none;
+}
