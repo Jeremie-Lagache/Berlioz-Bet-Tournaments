@@ -33,6 +33,18 @@ exports.createParis = async (req, res) => {
     
   }
 
+  exports.getAllTeams = async (req, res) => {
+      
+    try {
+      const teams = await Team.find()
+      return res.json({ status: 'ok', teams: teams });
+    } catch (error) {
+      console.log(error);
+      res.json({ status: 'error', error: error });
+    }
+  
+  }
+
   exports.getMatchData = async (req, res) => {
 
     const id = req.headers['id'];

@@ -13,6 +13,21 @@ async function getAllMatchs() {
       }
   }
 
+  async function getAllTeams() {
+
+    const req = await fetch('http://localhost:1337/api/get-all-teams', {
+        headers: {  
+        },
+    })
+  
+    const data = await req.json()
+    if (data.status === 'ok') {
+        return data.teams;
+      } else {
+        throw new Error(data.error);
+      }
+  }
+
   async function getMatchData(id) {
 
     const req = await fetch('http://localhost:1337/api/get-match-data', {
@@ -30,4 +45,4 @@ async function getAllMatchs() {
   }
 
 
-export { getAllMatchs, getMatchData }
+export { getAllMatchs, getMatchData, getAllTeams }
