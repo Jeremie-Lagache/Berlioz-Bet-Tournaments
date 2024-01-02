@@ -23,8 +23,6 @@ const App = () => {
 					<Route path="/dashboard/classement" element={<Classement />} />
 					<Route path="/dashboard/parier" element={<Parier />} />
 					<Route path="/matchs/:id" element={<Match />} />
-
-					<Route path='*' element={<Navigate to="/" />} />
 				</Routes>
 			</BrowserRouter>
 		</div>
