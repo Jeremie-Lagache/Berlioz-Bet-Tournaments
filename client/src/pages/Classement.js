@@ -56,7 +56,7 @@ const Classement = () => {
                 {
                 usersData
                     .slice() 
-                    .sort((a, b) => b.tokens - a.tokens) 
+                    .sort((a, b) => a.tokens - b.tokens) 
                     .map((user, index) => (
                     <tr key={index}>
                         <td>{index + 1}</td>

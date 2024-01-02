@@ -17,8 +17,8 @@
   color: white;
 }
 
-.betting-form input[type="submit"] {
-  font-size: calc(11px + 0.390625vh);
+.betting-form button {
+  font-size: calc(12px + 0.390625vh);
   font-weight: 700;
 }
 
@@ -59,18 +59,18 @@ input[type='range'] {
   margin-bottom: 20px;
 }
 
-input[type='submit'] {
+button[type='submit'] {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
   color: white;
   cursor: pointer;
-  /* transition: background-color 0.3s ease; */
+  transition: background-color 0.3s ease;
 }
 
-/* input[type='submit']:active {
+button[type='submit']:hover {
   background-color: #27ae60;
-} */
+}
 
   
