@@ -41,7 +41,7 @@ const BettingForm = ({ matchData }) => {
     }
 
 
-    const response = await fetch('http://localhost:1337/api/create-paris', {
+    const response = await fetch('https://berlioz-cup.onrender.com/api/create-paris', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -83,11 +83,14 @@ const BettingForm = ({ matchData }) => {
       </div>
       <input 
         value={jetons}
-        type="number"
+        type="range"
         onChange={(e) => setJetons(e.target.value)}        
       />
       <p>{jetons}</p>
-      <button type="submit">Place Bet</button>
+      <input 
+        type="submit" 
+        value="Parier"
+      />
       {balance === false && <p style={{color: 'red'}}>Vous n'avez pas assez de jetons</p>}
     </form>
   );

@@ -17,8 +17,8 @@
   color: white;
 }
 
-.betting-form button {
-  font-size: calc(12px + 0.390625vh);
+.betting-form input[type="submit"] {
+  font-size: calc(11px + 0.390625vh);
   font-weight: 700;
 }
 
@@ -59,7 +59,7 @@ input[type='range'] {
   margin-bottom: 20px;
 }
 
-button[type='submit'] {
+input[type='submit'] {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -69,7 +69,7 @@ button[type='submit'] {
   transition: background-color 0.3s ease;
 }
 
-button[type='submit']:hover {
+input[type='submit']:active {
   background-color: #27ae60;
 }
 
