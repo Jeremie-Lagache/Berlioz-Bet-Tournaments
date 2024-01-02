@@ -87,7 +87,13 @@ const BettingForm = ({ matchData }) => {
         onChange={(e) => setJetons(e.target.value)}        
       />
       <p>{jetons}</p>
-      <button type="submit">Place Bet</button>
+      <input
+        type="submit"
+        value="Place Bet"
+        onTouchStart={(e) => createPari(e)}
+        onClick={(e) => createPari(e)}
+      />
+
       {balance === false && <p style={{color: 'red'}}>Vous n'avez pas assez de jetons</p>}
     </form>
   );
