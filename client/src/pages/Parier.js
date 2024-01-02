@@ -47,6 +47,7 @@ const Parier = () => {
     const HandleLogOut = () => {
 		localStorage.clear();
 		window.location.reload(false);
+		history('/login')
 	}
 	  
 

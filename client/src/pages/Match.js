@@ -36,6 +36,7 @@ const Match = () => {
 	const HandleLogOut = () => {
 		localStorage.clear();
 		window.location.reload(false);
+		history('/login')
 	}
 
     return (
