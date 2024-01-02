@@ -2,16 +2,19 @@ import React from 'react';
 import { useState, useEffect } from 'react'
 import Naviguation from "../components/Naviguation";
 import { NavLink, useNavigate } from 'react-router-dom';
+import { BeatLoader } from 'react-spinners'; 
 
 function App() {
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
+	const [isLoading, setIsLoading] = useState(false)
 	const naviguate = useNavigate()
 
 	async function loginUser(event) {
 		event.preventDefault()
+		setIsLoading(true)
 
-		const response = await fetch('http://localhost:1337/api/login', {
+		const response = await fetch('https://berlioz-cup.onrender.com/api/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -43,9 +46,6 @@ function App() {
 	return (
 		<div>
 			<div className="register-login-nav-bar">
-				<NavLink to="/" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                <img src="img/logo.png" alt="logo" />
-        		</NavLink>
 				<div className="register-login-naviguation">
 					<Naviguation />
 				</div>
@@ -67,7 +67,16 @@ function App() {
 					placeholder="Password"
 				/>
 				<br />
-				<input type="submit" value="Login" />
+				<input 
+					type="submit" 
+					value="Login" 
+					disabled={isLoading}
+				/>
+				{isLoading && (
+                            <div className="loader-overlay">
+                                <BeatLoader color={'blue'} loading={isLoading} size={10} />
+                            </div>
+                        )}
 			</form>
 			</div>
 		</div>

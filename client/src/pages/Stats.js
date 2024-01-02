@@ -17,6 +17,8 @@ const Stats = () => {
 	const [name, setName] = useState('')
 	const [tokens, setTokens] = useState('')
 	const [paris, setParis] = useState([])
+	const [wins, setWins] = useState(0)
+	const [loss, setLoss] = useState(0)
     const token = localStorage.getItem('token')
 
     useEffect(() => { 
@@ -27,16 +29,39 @@ const Stats = () => {
 				history('/login')
 			} else {
 				GetUserData()
-					.then(data => (setId(data._id),setSurname(data.surname), setName(data.name), setTokens(data.tokens) ,localStorage.setItem('surname', data.surname), localStorage.setItem('name', data.name)))
+					.then(data => {
+						setId(data._id);
+						setSurname(data.surname);
+						setName(data.name);
+						setTokens(data.tokens);
+						localStorage.setItem('surname', data.surname);
+						localStorage.setItem('name', data.name);
+						
+						GetParisData(data._id)
+							.then(parisData => {
+								let wins = 0
+								let loss = 0
+								setParis(parisData)
+								for (const paris in parisData) {
+									if (parisData[paris].result === true) {
+										wins += 1
+									} else {
+										loss += 1
+									}
+								}
+								setWins(wins)
+								setLoss(loss)
+							})
+							.catch(error => console.error(error));
+					})
 					.catch(error => alert(error.message))
-				{id && GetParisData(id).then(data => setParis(data))}
 			}
 		}
 		else {
 			history('/login')
 		}
-
 	}, [token])
+	
 
 	const HandleLogOut = () => {
 		localStorage.clear();
@@ -61,12 +86,28 @@ const Stats = () => {
 					</ul>
 				</div>
 				<div className="pronos">
-					Mes pronos
+					<ul>
+						<div className="title">Mes pronos</div>
+						<div className="pronos-stats">
+							<div className="pronos-tot">
+								<div className="cercle">{paris.length}</div>
+								<p>pronos faits</p>
+							</div>
+							<div className="pronos-wins">
+								<div className="cercle">{wins}</div>
+								<p>pronos exactes</p>
+							</div>
+							<div className="pronos-loss">
+								<div className="cercle">{loss}</div>
+								<p>pronos ratés</p>
+							</div>
+						</div>
+					</ul>
 				</div>
 			</div>
 			<div className="evolution">
 
-			</div>
+			</div> 
         </div>
     );
 };

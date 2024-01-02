@@ -49,9 +49,6 @@ function App() {
 	return (
 		<div>
 			<div className="register-login-nav-bar">
-				<NavLink to="/" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                <img src="img/logo.png" alt="logo" />
-        		</NavLink>
 				<div className="register-login-naviguation">
 					<Naviguation />
 				</div>

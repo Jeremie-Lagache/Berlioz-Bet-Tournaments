@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Matchs = ({sport, teams, tour, cotes, state, handleMatch }) => {
+const Matchs = ({sport, teams, tour, cotes, state, score, handleMatch }) => {
     return (
         <div className='match-card'>
             <div className="match-info">
@@ -10,7 +10,8 @@ const Matchs = ({sport, teams, tour, cotes, state, handleMatch }) => {
                 <p>Côtes: {cotes[0]} VS {cotes[1]}</p>
                 <p>Status: {state}</p>
             </div>
-            <button className="bet-button" onClick={handleMatch}>Parier sur ce Match</button>
+            {state === "fini" && score && <div className='score'>Score : {score[0]}-{score[1]}</div>}
+            {state !== "fini" && score !== undefined && <button className="bet-button" onClick={handleMatch}>Parier sur ce Match</button>}
         </div>
     );
 };

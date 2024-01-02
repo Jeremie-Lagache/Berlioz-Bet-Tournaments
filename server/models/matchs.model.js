@@ -6,7 +6,8 @@ const Match = new mongoose.Schema(
 		teams: { type: [String], required: true },
 		tour: {type: String, required: true },
 		cotes: { type: [Number], required: true },
-		state: {type: String, required: true }
+		state: {type: String, required: true },
+		score: {type: Array}
 	},
 	{ collection: 'matchs' }
 )

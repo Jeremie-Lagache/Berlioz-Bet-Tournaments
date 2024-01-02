@@ -20,7 +20,7 @@ const Parier = () => {
 	const [token, setToken] = useState(localStorage.getItem('token'))
     const [sort, setSort] = useState({
 		sport : "",
-		teams : [],
+		teams : "",
 		tour : "",
 		state : ""
 	})
@@ -102,20 +102,9 @@ const Parier = () => {
           			tour={match.tour}
           			cotes={match.cotes}
           			state={match.state}
+					score={match.score}
           			handleMatch={() => handleMatch(match.sport, match.teams, match.cotes, match._id)}
         		/>
-      		))}
-    		{!Object.values(sort).some(value => value !== '') &&
-			matchsData.map((match, index) => (
-				<Matchs
-				key={index}
-				sport={match.sport}
-				teams={match.teams}
-				tour={match.tour}
-				cotes={match.cotes}
-				state={match.state}
-				handleMatch={() => handleMatch(match.sport, match.teams, match.cotes, match._id)}
-				/>
       		))}
 			</div>
 		

@@ -2,7 +2,6 @@ const User = require('../models/user.model');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
-// Fonction pour créer un utilisateur
 exports.createUser = async (req, res) => {
   console.log(req.body);
   try {
@@ -21,7 +20,6 @@ exports.createUser = async (req, res) => {
   }
 };
 
-// Fonction pour gérer la connexion d'un utilisateur
 exports.loginUser = async (req, res) => {
   const user = await User.findOne({
     username: req.body.username,
@@ -50,8 +48,6 @@ exports.loginUser = async (req, res) => {
     return res.json({ status: 'error', user: false });
   }
 };
-
-// Fonction pour obtenir user
 
 exports.getUserData = async (req, res) => {
   const token = req.headers['x-access-token'];
@@ -97,8 +93,6 @@ exports.getAllUsersTokens = async (req, res) => {
         tokens: user.tokens
       };
       users_data.push(user_data);
-      console.log(user_data);
-      console.log(users_data);
     }
 
     return res.json({ status: 'ok', users_data: users_data });
@@ -108,8 +102,6 @@ exports.getAllUsersTokens = async (req, res) => {
   }
 };
 
-
-// Fonction pour mettre à jour user
 exports.updateUser = async (req, res) => {
 
   try {
