@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
@@ -23,6 +23,8 @@ const App = () => {
 					<Route path="/dashboard/classement" element={<Classement />} />
 					<Route path="/dashboard/parier" element={<Parier />} />
 					<Route path="/matchs/:id" element={<Match />} />
+
+					<Route path='*' element={<Navigate to="/" />} />
 				</Routes>
 			</BrowserRouter>
 		</div>
