@@ -15,15 +15,6 @@ const paris = require('./Routes/paris')
 
 mongoose.connect('mongodb+srv://jeremie:12345@database1.5jbub5s.mongodb.net/berlioz-tech');
 
-app.get("/*", function (req, res) {
-  res.sendFile(path.join(__dirname, "dist/index.html"), function (err) {
-    if (err) {
-      res.status(500).send(err);
-    }
-  });
-});
-
-
 // users.js requêtes
 app.post('/api/register', users.createUser);
 app.post('/api/login', users.loginUser);
