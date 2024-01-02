@@ -74,7 +74,7 @@ function App() {
 				/>
 				{isLoading && (
                             <div className="loader-overlay">
-                                <BeatLoader color={'blue'} loading={isLoading} size={10} />
+                                <BeatLoader color={'blue'} loading={isLoading} size={8} />
                             </div>
                         )}
 			</form>
