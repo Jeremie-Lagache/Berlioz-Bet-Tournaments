@@ -1,6 +1,6 @@
 async function GetUserData() {
 
-    const req = await fetch('https://hector-berlioz-cup.onrender.com/api/dashboard', {
+    const req = await fetch('https://berlioz-cup.onrender.com/api/dashboard', {
         headers: {
             'x-refresh-token': localStorage.getItem('refresh-token'),
 
