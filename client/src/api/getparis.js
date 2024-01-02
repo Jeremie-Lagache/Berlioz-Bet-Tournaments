@@ -1,6 +1,6 @@
 async function GetParisData(id) {
 
-    const req = await fetch('http://localhost:1337/api/get-paris-data', {
+    const req = await fetch('https://hector-berlioz-cup.onrender.com/api/get-paris-data', {
         headers: {  
             'id': id,
         },

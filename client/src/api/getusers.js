@@ -1,6 +1,6 @@
 async function GetUserData() {
 
-    const req = await fetch('http://localhost:1337/api/dashboard', {
+    const req = await fetch('https://hector-berlioz-cup.onrender.com/api/dashboard', {
         headers: {
             'x-access-token': localStorage.getItem('token'),
             'x-refresh-token': localStorage.getItem('refresh-token'),
@@ -18,7 +18,7 @@ async function GetUserData() {
 
 async function getAllUsers() {
 
-  const req = await fetch('http://localhost:1337/api/get-all-users', {
+  const req = await fetch('https://hector-berlioz-cup.onrender.com/api/get-all-users', {
       headers: {
           'x-access-token': localStorage.getItem('token'),
           'x-refresh-token': localStorage.getItem('refresh-token'),
@@ -36,7 +36,7 @@ async function getAllUsers() {
 
 async function getAllUsersTokens() {
 
-  const req = await fetch('http://localhost:1337/api/get-all-users-tokens', {
+  const req = await fetch('https://hector-berlioz-cup.onrender.com/api/get-all-users-tokens', {
       headers: {
       },
   })

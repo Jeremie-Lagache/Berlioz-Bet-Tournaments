@@ -25,7 +25,7 @@ const Upload = () => {
     async function createTeams(event) {
         event.preventDefault();
 
-        const response = await fetch('http://localhost:1337/api/create-teams', {
+        const response = await fetch('https://hector-berlioz-cup.onrender.com/api/create-teams', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

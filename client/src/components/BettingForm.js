@@ -17,7 +17,7 @@ const BettingForm = ({ matchData }) => {
 
   async function updateJetons(id) {
 
-    const response = await fetch('http://localhost:1337/api/update-jetons', {
+    const response = await fetch('https://hector-berlioz-cup.onrender.com/api/update-jetons', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

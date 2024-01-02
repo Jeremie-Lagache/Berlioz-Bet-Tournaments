@@ -15,7 +15,7 @@ async function getAllMatchs() {
 
   async function getAllTeams() {
 
-    const req = await fetch('http://localhost:1337/api/get-all-teams', {
+    const req = await fetch('https://hector-berlioz-cup.onrender.com/api/get-all-teams', {
         headers: {  
         },
     })
@@ -30,7 +30,7 @@ async function getAllMatchs() {
 
   async function getMatchData(id) {
 
-    const req = await fetch('http://localhost:1337/api/get-match-data', {
+    const req = await fetch('https://hector-berlioz-cup.onrender.com/api/get-match-data', {
         headers: {  
           'id' : id
         },
