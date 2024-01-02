@@ -53,13 +53,19 @@ const Classement = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {usersData.map((user, index) => (
-                        <tr key={index}>
-                            <td>{index + 1}</td>
-                            <td>{user.surname + " "  + user.name}</td>
-                            <td>{user.tokens}</td>
-                        </tr>
-                    ))}
+                {
+                usersData
+                    .slice() 
+                    .sort((a, b) => b.tokens - a.tokens) 
+                    .map((user, index) => (
+                    <tr key={index}>
+                        <td>{index + 1}</td>
+                        <td>{user.surname + " " + user.name}</td>
+                        <td>{user.tokens}</td>
+                    </tr>
+                    ))
+                }
+
                 </tbody>
             </table>
         </div>

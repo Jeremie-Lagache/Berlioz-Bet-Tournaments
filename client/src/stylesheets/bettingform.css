@@ -66,11 +66,11 @@ input[type='submit'] {
   background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
   color: white;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  /* transition: background-color 0.3s ease; */
 }
 
-input[type='submit']:active {
+/* input[type='submit']:active {
   background-color: #27ae60;
-}
+} */
 
   
