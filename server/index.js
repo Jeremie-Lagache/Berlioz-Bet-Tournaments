@@ -13,10 +13,6 @@ app.use(express.json());
 const users = require('./Routes/users');
 const paris = require('./Routes/paris')
 
-app.get('*', (req, res) => {
-  res.redirect('/');
-});
-
 mongoose.connect('mongodb+srv://jeremie:12345@database1.5jbub5s.mongodb.net/berlioz-tech');
 
 // users.js requêtes

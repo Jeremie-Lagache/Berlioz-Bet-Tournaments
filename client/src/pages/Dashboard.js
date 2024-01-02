@@ -25,7 +25,6 @@ const Dashboard = () => {
 				GetUserData()
 					.then(data => (setUsername(data.username),setSurname(data.surname), setName(data.name), localStorage.setItem('jetons', data.tokens), localStorage.setItem('id', data._id), localStorage.setItem('surname', data.surname), localStorage.setItem('name', data.name)))
 					.catch(error => alert(error.message))
-
 			}
 		}
 		else {
