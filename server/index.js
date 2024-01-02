@@ -7,8 +7,19 @@ const bcrypt = require('bcryptjs');
 
 const httpServer = require("http").createServer(app);
 
+app.use((req, res, next) => {
+  const requestedHost = req.hostname;
+  const requestedPath = req.path;
+
+  if (requestedHost === 'hector-berlioz-cup.onrender.com' && requestedPath !== '/') {
+    return res.redirect('/');
+  }
+  next();
+});
+
 app.use(cors());
 app.use(express.json());
+
 
 const users = require('./Routes/users');
 const paris = require('./Routes/paris')
