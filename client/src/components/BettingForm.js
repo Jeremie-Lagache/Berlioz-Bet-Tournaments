@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import './../stylesheets/bettingform.css'
 
 const BettingForm = ({ matchData }) => {
@@ -14,6 +15,7 @@ const BettingForm = ({ matchData }) => {
     0: [],
     1: [],
   });
+  const naviguate = useNavigate()
 
   async function updateJetons(id) {
 
@@ -61,9 +63,9 @@ const BettingForm = ({ matchData }) => {
     const data = await response.json();
 
     if (data.status === 'ok') {
-      alert('Bet placed successfully!');
       updateJetons(user_id)
       localStorage.setItem('jetons', (tokens - jetons))
+      naviguate('/')
     }
   }
 

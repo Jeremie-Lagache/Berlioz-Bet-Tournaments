@@ -17,7 +17,7 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-        <Routes>
+        <Routes basename="Berlioz-betting-cup">
           <Route path="/" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
