@@ -6,12 +6,14 @@ import { NavLink } from "react-router-dom";
 import { GetUserData } from "./../api/getusers"
 import Profil from '../components/Profil';
 import Upload from '../components/Upload';
+import { BeatLoader } from 'react-spinners'; 
 
 const Dashboard = () => {
 	const history = useNavigate()
 	const [username, setUsername] = useState('')
 	const [surname, setSurname] = useState('')
 	const [name, setName] = useState('')
+	const [isLoading, setIsLoading] = useState(false)
 	const avatarRef = useRef(null);
 	const token = localStorage.getItem('token')
 
@@ -22,8 +24,9 @@ const Dashboard = () => {
 				localStorage.removeItem('token')
 				history('/login')
 			} else {
+				setIsLoading(true)
 				GetUserData()
-					.then(data => (setUsername(data.username),setSurname(data.surname), setName(data.name), localStorage.setItem('jetons', data.tokens), localStorage.setItem('id', data._id), localStorage.setItem('surname', data.surname), localStorage.setItem('name', data.name)))
+					.then(data => (setUsername(data.username),setSurname(data.surname), setName(data.name), localStorage.setItem('jetons', data.tokens), localStorage.setItem('id', data._id), localStorage.setItem('surname', data.surname), localStorage.setItem('name', data.name), setIsLoading(false)))
 					.catch(error => alert(error.message))
 			}
 		}
@@ -56,6 +59,10 @@ const Dashboard = () => {
 				<Profil HandleLogOut={() =>HandleLogOut()} forwardedRef={avatarRef}/>
 			</div>
 			<h1>{username} Dashboard </h1>
+			{isLoading && <div className="loading-dashboard">
+				<h3>Chargement de vos données en cours...</h3>
+				<BeatLoader color={'white'} loading={isLoading} size={8} />
+			</div>}
 			<div className="menu">
 				<ul>
 					<NavLink to="/dashboard/stats" className={(nav) => (nav.isActive ? "nav-active" : "")}>
