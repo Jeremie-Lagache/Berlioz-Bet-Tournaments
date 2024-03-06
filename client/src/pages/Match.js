@@ -13,6 +13,9 @@ const Match = () => {
     const [token, setToken] = useState(localStorage.getItem('token'))
     const [matchData, setMatchData] = useState({})
 	const userId = localStorage.getItem('id')
+	const url = window.location.pathname;
+    const parts = url.split('/');
+    const id = parts[parts.length - 1];
 
     useEffect(() => { 
 		if (token) {
@@ -21,9 +24,6 @@ const Match = () => {
 				localStorage.removeItem('token')
 				history('/login') 
 			} else {
-                const url = window.location.pathname;
-                const parts = url.split('/');
-                const id = parts[parts.length - 1];
                 getMatchData(id).then(data => (setMatchData(data)))
 			}
 		}
@@ -51,7 +51,7 @@ const Match = () => {
             <h1>{matchData.teams[0]} VS {matchData.teams[1]}</h1>
         	)}
 			<div className="bet-interface">
-				{matchData.teams && <BettingForm matchData={matchData} />}
+				{matchData.teams && <BettingForm matchData={matchData} id={id} />}
 			</div>
         </div>
     );

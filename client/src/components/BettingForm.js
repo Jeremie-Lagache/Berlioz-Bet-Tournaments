@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import './../stylesheets/bettingform.css'
 
-const BettingForm = ({ matchData }) => {
+const BettingForm = ({ matchData, id }) => {
   const [team, setTeam] = useState(null);
   const [jetons, setJetons] = useState(0);
   const [balance, setBalance] = useState(true);
@@ -17,22 +17,6 @@ const BettingForm = ({ matchData }) => {
   });
   const naviguate = useNavigate()
 
-  async function updateJetons(id) {
-
-    const response = await fetch('https://berlioz-cup.onrender.com/api/update-jetons', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        id,
-        jetons,
-      }),
-    });
-
-    const data = await response.json();
-  }
-
   async function createPari(event) {
     event.preventDefault();
 
@@ -44,7 +28,7 @@ const BettingForm = ({ matchData }) => {
 
     let predict = ""
 
-    if (team !== "nul") {
+    if (team !== 2) {
       predict = matchData.teams[team]
     } else {
       predict = "nul"
@@ -56,12 +40,12 @@ const BettingForm = ({ matchData }) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
+        index : team,
         sport: matchData.sport,
-        match : `${matchData.teams[0]} VS ${matchData.teams[1]}`,
+        match : id,
         parieur: user_id,
         cote: matchData.cotes[team],
         team: predict,
-        jetons: jetons,
         state: 'en cours',
         result: false
       }),
@@ -70,9 +54,9 @@ const BettingForm = ({ matchData }) => {
     const data = await response.json();
 
     if (data.status === 'ok') {
-      updateJetons(user_id)
-      localStorage.setItem('jetons', (tokens - jetons))
       naviguate('/')
+    } else {
+      alert("error")
     }
   }
 
@@ -91,8 +75,8 @@ const BettingForm = ({ matchData }) => {
         ))}
         <button
             type='button'
-            onClick={() => setTeam("nul")}
-            className={`team-button ${team === "nul" ? 'selected' : ''}`}
+            onClick={() => setTeam(2)}
+            className={`team-button ${team === 2 ? 'selected' : ''}`}
           >
             Match nul
           </button>
@@ -116,7 +100,6 @@ const BettingForm = ({ matchData }) => {
         type="submit" 
         value="Parier"
       />
-      {balance === false && <p style={{color: 'red'}}>Vous n'avez pas assez de jetons</p>}
     </form>
   );
 };

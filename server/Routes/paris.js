@@ -3,24 +3,39 @@ const Match = require('../models/matchs.model');
 const Team = require('../models/team.model');
 
 exports.createParis = async (req, res) => {
-    const pari = req.body
-    try {
-      await Pari.create({
-        sport: pari.sport,
-		    match: pari.match,
-		    parieur: pari.parieur,
-		    cote: pari.cote,
-        team: pari.team,
-		    jetons: pari.jetons,
-		    state: pari.state,
-		    result: pari.result,
-      });
-      
-      res.json({ status: 'ok' });
-    } catch (err) {
-      res.json({ status: 'error', error: err });
-    }
-  };
+  const pari = req.body;
+  const index = pari.index;
+  try {
+    await Pari.create({
+      sport: pari.sport,
+      match: pari.match,
+      parieur: pari.parieur,
+      cote: pari.cote,
+      team: pari.team,
+      jetons: pari.jetons,
+      state: pari.state,
+      result: pari.result,
+    });
+
+    const match = await Match.findOne({ _id: pari.match });
+    let cotesCount = 1;
+    match.counts.forEach((count) => {
+      cotesCount += count;
+    });
+    
+    let update = (match.counts[index] / cotesCount) * 100;
+
+    const updateQuery = {};
+    updateQuery['cotes.' + index] = update;
+
+    await Match.updateOne({ _id: pari.match }, { $set: updateQuery });
+
+    res.json({ status: 'ok' });
+  } catch (err) {
+    res.json({ status: 'error', error: err });
+  }
+};
+
     
   exports.getAllMatchs = async (req, res) => {
       
@@ -90,7 +105,6 @@ exports.GetParisData = async (req, res) => {
   }
 
 }
-
 
 
 

@@ -7,7 +7,6 @@ const Pari = new mongoose.Schema(
 		parieur: { type: String, required: true },
 		cote: { type: Number, required: true },
 		team: {type: String, required: true},
-		jetons: { type: Number, required: true },
 		state: {type: String, required: true },
 		result: {type: Boolean, required: true}
 	},
