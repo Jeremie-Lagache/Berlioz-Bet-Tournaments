@@ -15,12 +15,13 @@ exports.createParis = async (req, res) => {
 		    state: pari.state,
 		    result: pari.result,
       });
+      
       res.json({ status: 'ok' });
     } catch (err) {
       res.json({ status: 'error', error: err });
     }
   };
-
+    
   exports.getAllMatchs = async (req, res) => {
       
       try {
@@ -76,7 +77,7 @@ exports.createTeams = async (req, res) => {
   }
 };
 
-exports.getParisData = async (req, res) => {
+exports.GetParisData = async (req, res) => {
 
   const id = req.headers['id'];
     

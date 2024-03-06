@@ -24,7 +24,7 @@ app.use(express.json());
 const users = require('./Routes/users');
 const paris = require('./Routes/paris')
 
-mongoose.connect('mongodb+srv://jeremie:12345@database1.5jbub5s.mongodb.net/berlioz-tech');
+mongoose.connect('mongodb+srv://jeremie:berliozcup@database1.5jbub5s.mongodb.net/berlioz-tech');
 
 // users.js requêtes
 app.post('/api/register', users.createUser);
@@ -41,7 +41,7 @@ app.get('/api/get-all-matchs', paris.getAllMatchs)
 app.get('/api/get-all-teams', paris.getAllTeams)
 app.get('/api/get-match-data', paris.getMatchData)
 app.post('/api/create-paris', paris.createParis)
-app.get('/api/get-paris-data', paris.getParisData)
+app.get('/api/get-paris-data', paris.GetParisData)
 
 httpServer.listen(1337, () => {
   console.log('Server started on 1337'); 

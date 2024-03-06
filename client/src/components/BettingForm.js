@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import './../stylesheets/bettingform.css'
 
@@ -42,6 +42,13 @@ const BettingForm = ({ matchData }) => {
       return;
     }
 
+    let predict = ""
+
+    if (team !== "nul") {
+      predict = matchData.teams[team]
+    } else {
+      predict = "nul"
+    }
 
     const response = await fetch('https://berlioz-cup.onrender.com/api/create-paris', {
       method: 'POST',
@@ -53,7 +60,7 @@ const BettingForm = ({ matchData }) => {
         match : `${matchData.teams[0]} VS ${matchData.teams[1]}`,
         parieur: user_id,
         cote: matchData.cotes[team],
-        team: matchData.teams[team],
+        team: predict,
         jetons: jetons,
         state: 'en cours',
         result: false
@@ -82,13 +89,29 @@ const BettingForm = ({ matchData }) => {
             {teamName}
           </button>
         ))}
+        <button
+            type='button'
+            onClick={() => setTeam("nul")}
+            className={`team-button ${team === "nul" ? 'selected' : ''}`}
+          >
+            Match nul
+          </button>
       </div>
-      <input 
-        value={jetons}
-        type="range"
-        onChange={(e) => setJetons(e.target.value)}        
-      />
-      <p>{jetons}</p>
+      <div className="cotes">
+        <button
+          type='button'
+        >
+
+        </button>
+        <button
+          type='button'
+        >
+        </button>
+        <button
+          type='button'
+        >
+        </button>
+      </div>
       <input 
         type="submit" 
         value="Parier"
