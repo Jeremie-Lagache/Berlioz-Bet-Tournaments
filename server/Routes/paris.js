@@ -21,16 +21,16 @@ exports.createParis = async (req, res) => {
 
     const cotesCount = match.counts.reduce((acc, count) => acc + count, 0);
 
-    match.counts[index] += 1;
+    let update = 100 + Math.trunc(((match.counts[index] + 1) / (cotesCount)) * 100)
 
-    const updatedCotes = match.cotes.map((cote, idx) => {
-      const ratio = (match.counts[idx] / cotesCount) * 100;
-      return ratio;
-    }); 
+    const updateQuery = {};
+    updateQuery['cotes.' + index] = update;
+    const countquery = {};
+    countquery['counts.' + index] = match.counts[index] + 1;
 
     await Match.updateOne(
       { _id: pari.match },
-      { $set: { cotes: updatedCotes, counts: match.counts } }
+      { $set: { ...updateQuery, ...countquery } }
     );
 
     res.json({ status: 'ok' });
@@ -39,8 +39,6 @@ exports.createParis = async (req, res) => {
     res.json({ status: 'error', error: err });
   }
 };
-
-
 
     
   exports.getAllMatchs = async (req, res) => {
