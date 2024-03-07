@@ -21,7 +21,7 @@ exports.createParis = async (req, res) => {
 
     const cotesCount = match.counts.reduce((acc, count) => acc + count, 0);
 
-    let update = 100 + Math.trunc(((match.counts[index] + 1) / (cotesCount)) * 100)
+    let update = 100 + Math.trunc(((match.counts[index] + 1) / (cotesCount + 1)) * 100)
 
     const updateQuery = {};
     updateQuery['cotes.' + index] = update;

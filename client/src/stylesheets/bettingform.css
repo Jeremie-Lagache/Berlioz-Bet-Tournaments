@@ -73,4 +73,9 @@ input[type='submit'] {
   background-color: #27ae60;
 }
 
+.cote {
+  display: flex;
+  text-align: center;
+}
+
   
