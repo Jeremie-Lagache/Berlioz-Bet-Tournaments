@@ -18,11 +18,12 @@ exports.createParis = async (req, res) => {
     });
 
     const match = await Match.findOne({ _id: pari.match });
+
     let cotesCount = 1;
     match.counts.forEach((count) => {
-      cotesCount += match.counts[count];
+      cotesCount += isNaN(count) ? 0 : count;
     });
-    
+
     let update = ((match.counts[index] + 1) / cotesCount) * 100;
     console.log(cotesCount);
 
@@ -35,9 +36,9 @@ exports.createParis = async (req, res) => {
       { _id: pari.match },
       { $set: { ...updateQuery, ...countquery } }
     );
-    
 
     res.json({ status: 'ok' });
+
   } catch (err) {
     res.json({ status: 'error', error: err });
   }
