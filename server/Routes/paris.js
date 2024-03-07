@@ -34,6 +34,7 @@ exports.createParis = async (req, res) => {
     });
 
     console.log(cotesCount);
+    console.log(updates);
 
     const updateQuerys = [];
     updates.forEach((update) => {
@@ -44,9 +45,11 @@ exports.createParis = async (req, res) => {
     const countquery = {};
     countquery['counts.' + index] = match.counts[index] + 1;
 
+    console.log(updateQuerys)
+
     await Match.updateOne(
       { _id: pari.match },
-      { $set: { ...updateQuerys[0], ...updateQuerys[1],...updateQuerys[2], ...countquery } }
+      { $set: { ...updateQuerys[0], ...updateQuerys[1], ...updateQuerys[2], ...countquery } }
     );
 
     res.json({ status: 'ok' });
