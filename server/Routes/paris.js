@@ -30,7 +30,7 @@ exports.createParis = async (req, res) => {
     const updateQuery = {};
     updateQuery['cotes.' + index] = update;
     const countquery = {};
-    countquery['counts.' + index] = cotesCount + 1;
+    countquery['counts.' + index] = match.counts[index] + 1;
 
     await Match.updateOne(
       { _id: pari.match },
