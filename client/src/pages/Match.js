@@ -51,7 +51,7 @@ const Match = () => {
             <h1>{matchData.teams[0]} VS {matchData.teams[1]}</h1>
         	)}
 			<div className="bet-interface">
-				{matchData.teams && <BettingForm matchData={matchData} id={id} />}
+				{id && matchData.teams && <BettingForm matchData={matchData} id={id} />}
 			</div>
         </div>
     );

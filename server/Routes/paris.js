@@ -109,10 +109,10 @@ exports.GetParisData = async (req, res) => {
 exports.GetCotesData = async (req, res) => {
 
   const id = req.headers['id'];
+  console.log(id);
     
   try {
     const match = await Match.findOne({id : id})
-    console.log(match);
     return res.json({ status: 'ok', cotes: match.cotes });
   } catch (error) {
     console.log(error);

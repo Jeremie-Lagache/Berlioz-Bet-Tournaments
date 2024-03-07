@@ -20,9 +20,10 @@ const BettingForm = ({ matchData, id }) => {
   const naviguate = useNavigate()
 
   useEffect(() => {
+    console.log(id);
     GetCotesData(id)
       .then((cotes) => setCotes(cotes))
-  }, [id])
+  }, [])
 
   async function createPari(event) {
     event.preventDefault();
