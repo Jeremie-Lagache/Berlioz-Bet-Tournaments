@@ -124,7 +124,16 @@ exports.GetCotesData = async (req, res) => {
 
 }
 
-
+exports.UpdateParis = async (req, res) => {
+  const id = req.body.id
+  const result = req.body.result
+  try {
+    await Pari.updateOne({match : id}, { $set : {result : result}})
+  } catch(error) {
+    console.log(error);
+    res.json({ status: 'error', error: error });
+  }
+}
 
 
 

@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import './../stylesheets/stats.css'
 import { GetUserData, getAllUsersTokens } from "./../api/getusers"
 import { GetParisData } from "./../api/getparis"
+import { getMatchData } from "./../api/getmatchs"
 
 const Stats = () => {
 
@@ -21,44 +22,86 @@ const Stats = () => {
 	const [loss, setLoss] = useState(0)
     const token = localStorage.getItem('token')
 
-    useEffect(() => { 
-		if (token) {
-			const user = jwt.decode(token)
-			if (!user) {
-				localStorage.removeItem('token')
-				history('/login')
-			} else {
-				GetUserData()
-					.then(data => {
-						setId(data._id);
-						setSurname(data.surname);
-						setName(data.name);
-						setTokens(data.tokens);
-						localStorage.setItem('surname', data.surname);
-						localStorage.setItem('name', data.name);
-						
-						GetParisData(data._id)
-							.then(parisData => {
-								let wins = 0
-								let loss = 0
-								setParis(parisData)
-								for (const paris in parisData) {
-									if (parisData[paris].result === true) {
-										wins += 1
+	async function updateParis(id, result) {
+		const response = await fetch('https://berlioz-cup.onrender.com/api/update-paris', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+			id : id,
+			result : result
+		}),
+		});
+
+		const data = await response.json();
+
+		if (data.status === 'ok') {
+			return
+		} else {
+			console.log("error");
+		}
+	}
+
+    useEffect(() => {
+		const fetchData = async () => {
+			try {
+				if (token) {
+					const user = jwt.decode(token);
+					if (!user) {
+						localStorage.removeItem('token');
+						history('/login');
+					} else {
+						const userData = await GetUserData();
+	
+						setId(userData._id);
+						setSurname(userData.surname);
+						setName(userData.name);
+						setTokens(userData.tokens);
+						localStorage.setItem('surname', userData.surname);
+						localStorage.setItem('name', userData.name);
+	
+						const parisData = await GetParisData(userData._id);
+	
+						let wins = 0;
+						let loss = 0;
+	
+						const updateParisPromises = parisData.map(async (paris) => {
+							if (paris.result === true) {
+								wins += 1;
+								return Promise.resolve();
+							} else {
+								try {
+									const matchData = await getMatchData(paris.match);
+	
+									if (matchData.winner && matchData.winner === paris.team) {
+										return updateParis(paris.match, true);
+									} else if (matchData.winner && matchData.winner !== paris.team) {
+										return updateParis(paris.match, false);
 									}
+								} catch (error) {
+									console.error(error);
 								}
-								setWins(wins)
-								setLoss(loss)
-							})
-							.catch(error => console.error(error));
-					})
-					.catch(error => alert(error.message))
+							}
+						});
+	
+						await Promise.all(updateParisPromises);
+	
+						setWins(wins);
+						setLoss(loss);
+						setParis(parisData);
+					}
+				} else {
+					history('/login');
+				}
+			} catch (error) {
+				console.error(error);
 			}
-		}
-		else {
-			history('/login')
-		}
-	}, [token])
+		};
+	
+		fetchData();
+	}, [token, history]);
+	
 	
 
 	const HandleLogOut = () => {
