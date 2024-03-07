@@ -20,7 +20,7 @@ exports.createParis = async (req, res) => {
     const match = await Match.findOne({ _id: pari.match });
     let cotesCount = 1;
     match.counts.forEach((count) => {
-      cotesCount += count;
+      cotesCount += match.counts[count];
     });
     
     let update = ((match.counts[index] + 1) / cotesCount) * 100;
