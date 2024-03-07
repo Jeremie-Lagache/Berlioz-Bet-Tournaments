@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
+import { GetCotesData } from "./../api/getparis"
 import './../stylesheets/bettingform.css'
 
 const BettingForm = ({ matchData, id }) => {
   const [team, setTeam] = useState(null);
   const [jetons, setJetons] = useState(0);
   const [balance, setBalance] = useState(true);
+  const [cotes, setCotes] = useState([]);
   const user_id = localStorage.getItem('id')
   const [score, setScore] = useState({
     0: '',
@@ -16,6 +18,11 @@ const BettingForm = ({ matchData, id }) => {
     1: [],
   });
   const naviguate = useNavigate()
+
+  useEffect(() => {
+    GetCotesData(id)
+      .then((cotes) => setCotes(cotes))
+  }, [id])
 
   async function createPari(event) {
     event.preventDefault();

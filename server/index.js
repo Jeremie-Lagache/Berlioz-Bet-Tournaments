@@ -42,6 +42,7 @@ app.get('/api/get-all-teams', paris.getAllTeams)
 app.get('/api/get-match-data', paris.getMatchData)
 app.post('/api/create-paris', paris.createParis)
 app.get('/api/get-paris-data', paris.GetParisData)
+app.get('/api/get-cotes-data', paris.GetCotesData);
 
 httpServer.listen(1337, () => {
   console.log('Server started on 1337'); 

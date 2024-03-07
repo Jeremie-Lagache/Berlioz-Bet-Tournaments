@@ -11,7 +11,7 @@ exports.createUser = async (req, res) => {
       name: req.body.name,
       username: req.body.username,
       classe: req.body.classe,
-      tokens: 1000,
+      tokens: 0,
       password: newPassword,
     });
     res.json({ status: 'ok' });

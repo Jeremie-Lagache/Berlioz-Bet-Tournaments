@@ -14,4 +14,21 @@ async function GetParisData(id) {
       }
   }
 
-export { GetParisData }
+  async function GetCotesData(id) {
+
+    const req = await fetch('https://berlioz-cup.onrender.com/api/get-cotes-data', {
+        headers: {  
+            'id': id,
+        },
+    })
+  
+    const data = await req.json()
+    if (data.status === 'ok') {
+        return data.cotes;
+      } else {
+        throw new Error(data.error);
+      }
+  }
+
+
+export { GetParisData, GetCotesData }
