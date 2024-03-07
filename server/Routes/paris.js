@@ -25,6 +25,7 @@ exports.createParis = async (req, res) => {
     match.counts.forEach((count) => {
       let query;
       cotesCount += isNaN(count) ? 0 : match.counts[count];
+      console.log(match.counts[count]);
       if (count === index) {
         query = ((match.counts[count] + 1) / (cotesCount - match.counts[count])) * 100;
       } else {
