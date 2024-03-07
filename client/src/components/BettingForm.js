@@ -72,38 +72,33 @@ const BettingForm = ({ matchData, id }) => {
     <form onSubmit={createPari} className="betting-form">
       <div className="team-buttons">
         {matchData.teams.map((teamName, index) => (
-          <button
+          <div className="pari">
+            <button
             type='button'
             key={index}
             onClick={() => setTeam(index)}
             className={`team-button ${team === index ? 'selected' : ''}`}
-          >
-            {teamName}
-          </button>
+            >
+              {teamName}
+            </button>
+            <div className='cote'>
+              {cotes[index]}</div>
+          </div>
         ))}
-        <button
-            type='button'
-            onClick={() => setTeam(2)}
-            className={`team-button ${team === 2 ? 'selected' : ''}`}
-          >
-            Match nul
-          </button>
+        <div className="pari">
+          <button
+              type='button'
+              onClick={() => setTeam(2)}
+              className={`team-button ${team === 2 ? 'selected' : ''}`}
+            >
+              Match nul
+            </button>
+            <div className='cote'>
+              {cotes[2]}
+            </div>
+        </div>
       </div>
-      <div className="cotes">
-        <button
-          type='button'
-        >
-
-        </button>
-        <button
-          type='button'
-        >
-        </button>
-        <button
-          type='button'
-        >
-        </button>
-      </div>
+      
       <input 
         type="submit" 
         value="Parier"

@@ -24,11 +24,14 @@ exports.createParis = async (req, res) => {
     });
     
     let update = (match.counts[index] / cotesCount) * 100;
+    console.log(update);
 
     const updateQuery = {};
     updateQuery['cotes.' + index] = update;
+    const countquery = {};
+    countquery['counts.' + index] = cotesCount + 1;
 
-    await Match.updateOne({ _id: pari.match }, { $set: updateQuery });
+    await Match.updateOne({ _id: pari.match }, { $set: updateQuery }, {$set : countquery});
 
     res.json({ status: 'ok' });
   } catch (err) {
