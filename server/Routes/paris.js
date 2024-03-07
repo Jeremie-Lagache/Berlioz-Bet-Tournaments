@@ -24,7 +24,7 @@ exports.createParis = async (req, res) => {
       cotesCount += isNaN(count) ? 0 : count;
     });
 
-    let update = ((match.counts[index] + 1) / (cotesCount - match.counts[index] + 1)) * 100;
+    let update = Math.trunc(((match.counts[index] + 1) / (cotesCount - match.counts[index] + 1)) * 100)
     console.log(cotesCount);
 
     const updateQuery = {};
