@@ -9,7 +9,8 @@ const Match = new mongoose.Schema(
 		cotes: { type: [Number], required: true },
 		counts: {type: [Number], required: true},
 		state: {type: String, required: true },
-		score: {type: Array}
+		score: {type: Array},
+		winner: {type: String}
 	},
 	{ collection: 'matchs' }
 )

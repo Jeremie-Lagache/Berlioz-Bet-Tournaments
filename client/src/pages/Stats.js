@@ -45,8 +45,6 @@ const Stats = () => {
 								for (const paris in parisData) {
 									if (parisData[paris].result === true) {
 										wins += 1
-									} else {
-										loss += 1
 									}
 								}
 								setWins(wins)
