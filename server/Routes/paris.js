@@ -30,7 +30,7 @@ exports.createParis = async (req, res) => {
       } else {
         query = ((match.counts[count]) / (cotesCount - match.counts[count])) * 100;
       }
-      update.push(query)
+      updates.push(query)
     });
 
     console.log(cotesCount);
