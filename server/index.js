@@ -37,6 +37,7 @@ app.post('/api/update-jetons', users.updateJetons)
 
 // paris.js requêtes
 app.post('/api/create-teams', paris.createTeams);
+app.post('/api/create-matchs', paris.createTeams);
 app.get('/api/get-all-matchs', paris.getAllMatchs)
 app.get('/api/get-all-teams', paris.getAllTeams)
 app.get('/api/get-match-data', paris.getMatchData)

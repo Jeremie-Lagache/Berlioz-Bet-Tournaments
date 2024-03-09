@@ -96,6 +96,34 @@ exports.createTeams = async (req, res) => {
   }
 };
 
+exports.createMatches = async (req, res) => {
+  const matches = req.body.matches;
+
+  try {
+    matches.forEach(async (match) => {
+      if (
+        match.sport &&
+        match.teams &&
+        match.tour &&
+        match.date
+      ) {
+        await Match.create({
+          sport: match.sport,
+          teams: match.teams,
+          tour: match.tour,
+          date: match.date,
+          cotes: [100, 100, 100],
+          counts: [0, 0, 0],
+          state: "bientôt",
+        });
+      }
+    });
+    res.json({ status: 'ok' });
+  } catch (err) {
+    res.json({ status: 'error', error: err });
+  }
+};
+
 exports.GetParisData = async (req, res) => {
 
   const id = req.headers['id'];
