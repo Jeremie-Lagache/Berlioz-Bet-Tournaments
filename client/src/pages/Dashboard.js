@@ -7,6 +7,7 @@ import { GetUserData } from "./../api/getusers"
 import Profil from '../components/Profil';
 import Upload from '../components/Upload';
 import { BeatLoader } from 'react-spinners'; 
+import UploadMatch from '../components/UploadMatch';
 
 const Dashboard = () => {
 	const history = useNavigate()
@@ -77,6 +78,7 @@ const Dashboard = () => {
 				</ul>
 			</div>
 			{username === "admin" && <Upload />}
+			{username === "admin" && <UploadMatch />}
 		
 		</div>
 	)
