@@ -189,6 +189,6 @@ form input[type="submit"]:hover {
     position: absolute;
 }
 
-.upload form {
+.upload form, .create-match form {
     background: #00000056;
 }

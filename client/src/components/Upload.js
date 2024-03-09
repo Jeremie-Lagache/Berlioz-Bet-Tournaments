@@ -39,7 +39,7 @@ const Upload = () => {
 
         if (data.status === 'ok') {
             alert('Teams created');
-            setTeams([initialTeamState]); // Reset form fields after teams are created
+            setTeams([initialTeamState]);
         }
     }
 
