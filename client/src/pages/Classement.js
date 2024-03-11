@@ -43,13 +43,13 @@ const Classement = () => {
 			</div>
 			<h1>Classement</h1>
 			<div className='classement'>
-            <h2>Classement des joueurs par nombre de tokens</h2>
+            <h2>Classement des joueurs par nombre de points</h2>
             <table className='classement-table'>
                 <thead>
                     <tr>
                         <th>Position</th>
                         <th>Joueur</th>
-                        <th>Tokens</th>
+                        <th>Points</th>
                     </tr>
                 </thead>
                 <tbody>

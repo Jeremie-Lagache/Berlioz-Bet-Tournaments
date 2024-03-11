@@ -124,7 +124,7 @@ const Stats = () => {
 					<ul>
 						<li>Solde : </li>
 						<li>{tokens}</li>
-						<li>TOKENS</li>
+						<li>POINTS</li>
 					</ul>
 				</div>
 				<div className="pronos">
