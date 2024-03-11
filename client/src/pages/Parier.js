@@ -74,8 +74,10 @@ const Parier = () => {
 				</select>
 				<select onChange={(e) => setSort((prevSort) => ({...prevSort, tour: e.target.value }))}>
 					<option value=''>Tour</option>
-					<option value="poule A">poule A</option>
-					<option value="poule B">poule B</option>
+					<option value="POULE A">poule A</option>
+					<option value="POULE B">poule B</option>
+					<option value="POULE C">poule C</option>
+					<option value="POULE D">poule D</option>
 				</select>
 				<select onChange={(e) => setSort((prevSort) => ({...prevSort, state: e.target.value }))}>
 					<option value=''>Status</option>
