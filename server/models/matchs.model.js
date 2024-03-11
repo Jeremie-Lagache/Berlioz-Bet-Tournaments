@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const Match = new mongoose.Schema(
 	{
-		sport: { type: String, required: true, unique: true },
+		sport: { type: String, required: true },
 		teams: { type: [String], required: true },
 		tour: {type: String, required: true },
 		date: {type: String},
