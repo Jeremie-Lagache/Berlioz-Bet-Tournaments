@@ -187,6 +187,7 @@ exports.updateTokens = async (req, res) => {
   const userBets = await Pari.find({ parieur: userId, result: true });
 
   const totalCotes = userBets.reduce((total, bet) => total + bet.cote, 0);
+  console.log(totalCotes);
 
   try {
     
