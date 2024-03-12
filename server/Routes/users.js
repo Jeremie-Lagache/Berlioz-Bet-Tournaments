@@ -186,10 +186,10 @@ exports.updateTokens = async (req, res) => {
   const userId = req.body.userId; 
   const userBets = await Pari.find({ parieur: userId, result: true });
 
-  const updatedJetons = 0
+  let updatedJetons = 0
   userBets.forEach((bet) => {
-    updatedJetons += userBets[bet].cote
-  })
+    updatedJetons += bet.cote;
+  });
   console.log(updatedJetons);
 
   try {
