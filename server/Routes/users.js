@@ -190,7 +190,7 @@ exports.updateTokens = async (req, res) => {
   userBets.forEach((bet) => {
     updatedJetons += userBets[bet].cote
   })
-  console.log(totalCotes);
+  console.log(updatedJetons);
 
   try {
     
