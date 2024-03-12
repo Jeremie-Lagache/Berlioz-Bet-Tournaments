@@ -186,6 +186,8 @@ exports.updateTokens = async (req, res) => {
   const userId = req.body.userId; 
   const userBets = await Pari.find({ parieur: userId, result: true });
 
+  console.log(userBets);
+
   let updatedJetons = 0
   userBets.forEach((bet) => {
     updatedJetons += bet.cote;
