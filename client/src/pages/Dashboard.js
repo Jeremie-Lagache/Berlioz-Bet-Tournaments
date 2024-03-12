@@ -30,7 +30,7 @@ const Dashboard = () => {
 		  
 		  const data = await response.json();
 
-    	  if (data.status === 'ok') {$
+    	  if (data.status === 'ok') {
 			return
     	  } else {
       		console.log("error updating jetons");
