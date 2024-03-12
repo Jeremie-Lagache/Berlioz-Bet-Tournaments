@@ -36,7 +36,7 @@ const Parier = () => {
                 .catch(error => alert(error.message))
 			getAllTeams()
 				.then(data => (setTeams(data)))
-				.catch(error => alert(error.message))
+				.catch(error => console.log(error.message))
 		}
 	  }, [surname, name]);
 
