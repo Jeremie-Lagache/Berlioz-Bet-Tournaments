@@ -1,6 +1,8 @@
-body {
+html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
+  background: #011321;
 }
 
 * {
@@ -11,6 +13,7 @@ body {
   background: #011321;
   color: white;
   min-height: 100vh;
+  max-height: 100%;
 }
 
 .classement {
