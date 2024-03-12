@@ -194,7 +194,7 @@ exports.updateTokens = async (req, res) => {
 
   try {
     
-    await User.updateOne({ _id: userId }, { $set: { tokens: totalCotes } });
+    await User.updateOne({ _id: userId }, { $set: { tokens: updatedJetons } });
     res.json({ status: 'ok'});
   } catch(error) {
     console.log(error);
