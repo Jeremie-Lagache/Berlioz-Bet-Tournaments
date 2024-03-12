@@ -181,27 +181,18 @@ exports.getAllUsers = async (req, res) => {
   
 };
 
-exports.updateJetons = async (req, res) => {
-  const jetons = req.body.jetons;
-  const id = req.body.id;
-  
+exports.updateTokens = async (req, res) => {
+  const userId = req.body.userId; 
+  const userBets = await Pari.find({ parieur: userId, state: true });
+
+  const totalCotes = userBets.reduce((total, bet) => total + bet.cote, 0);
+
   try {
-    const user = await User.findById(id);
-    if (!user) {
-      return res.status(404).json({ status: 'error', error: 'User not found' });
-    }
-
-    const tokens = user.tokens;
-    const updatedTokens = tokens - jetons;
-
-    await User.findByIdAndUpdate(
-      id,
-      { $set: { tokens: updatedTokens } },
-      { new: true }
-    );
-
-    res.json({ status: 'ok' });
-  } catch (err) {
-    res.status(500).json({ status: 'error', error: err.message });
+    
+    await User.updateOne({ _id: userId }, { $set: { tokens: totalCotes } });
+    res.json({ status: 'success', message: 'Tokens updated successfully.' });
+  } catch(error) {
+    console.log(error);
+    res.status(500).json({ status: 'error', error: 'Failed to update tokens.' });
   }
 };

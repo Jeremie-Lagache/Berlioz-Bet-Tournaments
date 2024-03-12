@@ -33,7 +33,7 @@ app.get('/api/dashboard', users.getUserData);
 app.get('/api/get-all-users', users.getAllUsers)
 app.get('/api/get-all-users-tokens', users.getAllUsersTokens)
 app.post('/api/dashboard/profil', users.updateUser)
-app.post('/api/update-jetons', users.updateJetons)
+app.post('/api/update-tokens', users.updateTokens)
 
 // paris.js requêtes
 app.post('/api/create-teams', paris.createTeams);

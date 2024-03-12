@@ -19,6 +19,24 @@ const Dashboard = () => {
 	const avatarRef = useRef(null);
 	const token = localStorage.getItem('token')
 
+	const updateTokens = async (userId) => {
+		  const response = await fetch('https://berlioz-cup.onrender.com/api/update-tokens', {
+			method: 'POST',
+			headers: {
+			  'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ id : userId }),
+		  });
+		  
+		  const data = await response.json();
+
+    	  if (data.status === 'ok') {$
+			return
+    	  } else {
+      		console.log("error updating jetons");
+    	  }
+	  }
+
 	useEffect(() => { 
 		if (token) {
 			const user = jwt.decode(token)
@@ -28,7 +46,7 @@ const Dashboard = () => {
 			} else {
 				setIsLoading(true)
 				GetUserData()
-					.then(data => (setUsername(data.username),setSurname(data.surname), setName(data.name), localStorage.setItem('jetons', data.tokens), localStorage.setItem('id', data._id), localStorage.setItem('surname', data.surname), localStorage.setItem('name', data.name), setIsLoading(false)))
+					.then(data => (setUsername(data.username),setSurname(data.surname), setName(data.name), localStorage.setItem('jetons', data.tokens), localStorage.setItem('id', data._id), localStorage.setItem('surname', data.surname), localStorage.setItem('name', data.name), setIsLoading(false), updateTokens(data._id)))
 					.catch(error => console.log(error.message))
 			}
 		}
