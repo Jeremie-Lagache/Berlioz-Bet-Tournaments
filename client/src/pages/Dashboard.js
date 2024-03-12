@@ -25,7 +25,9 @@ const Dashboard = () => {
 			headers: {
 			  'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ id : userId }),
+			body: JSON.stringify({ 
+				id : userId 
+			}),
 		  });
 		  
 		  const data = await response.json();

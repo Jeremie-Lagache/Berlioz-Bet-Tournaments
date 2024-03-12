@@ -183,14 +183,14 @@ exports.getAllUsers = async (req, res) => {
 
 exports.updateTokens = async (req, res) => {
   const userId = req.body.userId; 
-  const userBets = await Pari.find({ parieur: userId, state: true });
+  const userBets = await Pari.find({ parieur: userId, result: true });
 
   const totalCotes = userBets.reduce((total, bet) => total + bet.cote, 0);
 
   try {
     
     await User.updateOne({ _id: userId }, { $set: { tokens: totalCotes } });
-    res.json({ status: 'success', message: 'Tokens updated successfully.' });
+    res.json({ status: 'ok'});
   } catch(error) {
     console.log(error);
     res.status(500).json({ status: 'error', error: 'Failed to update tokens.' });
