@@ -64,7 +64,7 @@ const BettingForm = ({ matchData, id }) => {
     if (data.status === 'ok') {
       naviguate('/')
     } else {
-      alert("error")
+      console.log("error", data.status)
     }
   }
 
