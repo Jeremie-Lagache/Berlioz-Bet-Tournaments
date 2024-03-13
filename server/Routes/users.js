@@ -183,7 +183,7 @@ exports.getAllUsers = async (req, res) => {
 };
 
 exports.updateTokens = async (req, res) => {
-  const userId = req.body.userId; 
+  const userId = req.body.id 
   const userBets = await Pari.find({ parieur: userId});
 
   console.log(userBets);
