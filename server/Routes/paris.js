@@ -80,6 +80,25 @@ exports.createParis = async (req, res) => {
   
 }
 
+exports.updateMatches = async (req, res) => {
+  const score = req.body.score
+  const teams = req.body.teams;
+  const winner = req.body.winner
+
+  try {
+    await Match.updateOne(
+      {teams : teams}, 
+      {$set : {
+        winner : winner,
+        score : score,
+        state : "fini"
+      }})
+    res.json({ status: 'ok' });
+  } catch (err) {
+    res.json({ status: 'error', error: err });
+  }
+};
+
 exports.createTeams = async (req, res) => {
   const teams = req.body.teams
   try {

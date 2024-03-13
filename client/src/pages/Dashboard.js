@@ -9,6 +9,7 @@ import Upload from '../components/Upload';
 import { BeatLoader } from 'react-spinners'; 
 import UploadMatch from '../components/UploadMatch';
 import Message from '../components/Message';
+import UpdateMatchs from '../components/UpdateMatchs';
 
 const Dashboard = () => {
 	const history = useNavigate()
@@ -98,6 +99,7 @@ const Dashboard = () => {
 					</NavLink>
 				</ul>
 			</div>
+			{username === "admin" && <UpdateMatchs />}
 			{username === "admin" && <Upload />}
 			{username === "admin" && <UploadMatch />}
 			<Message />

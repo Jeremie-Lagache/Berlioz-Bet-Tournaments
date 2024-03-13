@@ -45,6 +45,7 @@ app.post('/api/create-paris', paris.createParis)
 app.get('/api/get-paris-data', paris.GetParisData)
 app.get('/api/get-cotes-data', paris.GetCotesData);
 app.post('/api/update-paris', paris.UpdateParis);
+app.post('/api/update-matchs', paris.updateMatches);
 
 httpServer.listen(3000, () => {
   console.log('Server started on 3000'); 
