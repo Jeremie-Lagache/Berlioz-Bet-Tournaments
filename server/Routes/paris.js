@@ -37,6 +37,7 @@ exports.createParis = async (req, res) => {
 
   } catch (err) {
     res.json({ status: 'error', error: err });
+    console.log(err)
   }
 };
 
