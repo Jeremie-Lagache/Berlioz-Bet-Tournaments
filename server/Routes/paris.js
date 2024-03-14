@@ -37,12 +37,12 @@ exports.createParis = async (req, res) => {
       );
   
       res.json({ status: 'ok' });
+    }
 
     } catch (err) {
       res.json({ status: 'error', error: err });
       console.log(err)
     }
-  }
 };
 
     
