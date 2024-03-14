@@ -6,38 +6,42 @@ exports.createParis = async (req, res) => {
   const pari = req.body;
   const index = pari.index;
   try {
-    await Pari.create({
-      sport: pari.sport,
-      match: pari.match,
-      parieur: pari.parieur,
-      cote: pari.cote,
-      team: pari.team,
-      jetons: pari.jetons,
-      state: pari.state,
-      result: pari.result,
-    });
+    const oldPari = Pari.findOne({parieur : pari.parieur, match : pari.match})
+    console.log(oldPari)
+    if (oldPari === NaN) {
+      await Pari.create({
+        sport: pari.sport,
+        match: pari.match,
+        parieur: pari.parieur,
+        cote: pari.cote,
+        team: pari.team,
+        jetons: pari.jetons,
+        state: pari.state,
+        result: pari.result,
+      });
 
-    const match = await Match.findOne({ _id: pari.match });
+      const match = await Match.findOne({ _id: pari.match });
+  
+      const cotesCount = match.counts.reduce((acc, count) => acc + count, 0);
+  
+      let update = 100 - Math.trunc(((match.counts[index] + 1) / (cotesCount + 1)) * 100)
+  
+      const updateQuery = {};
+      updateQuery['cotes.' + index] = update;
+      const countquery = {};
+      countquery['counts.' + index] = match.counts[index] + 1;
+  
+      await Match.updateOne(
+        { _id: pari.match },
+        { $set: { ...updateQuery, ...countquery } }
+      );
+  
+      res.json({ status: 'ok' });
 
-    const cotesCount = match.counts.reduce((acc, count) => acc + count, 0);
-
-    let update = 100 - Math.trunc(((match.counts[index] + 1) / (cotesCount + 1)) * 100)
-
-    const updateQuery = {};
-    updateQuery['cotes.' + index] = update;
-    const countquery = {};
-    countquery['counts.' + index] = match.counts[index] + 1;
-
-    await Match.updateOne(
-      { _id: pari.match },
-      { $set: { ...updateQuery, ...countquery } }
-    );
-
-    res.json({ status: 'ok' });
-
-  } catch (err) {
-    res.json({ status: 'error', error: err });
-    console.log(err)
+    } catch (err) {
+      res.json({ status: 'error', error: err });
+      console.log(err)
+    }
   }
 };
 
