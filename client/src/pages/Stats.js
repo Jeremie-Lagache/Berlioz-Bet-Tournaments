@@ -75,9 +75,9 @@ const Stats = () => {
 									const matchData = await getMatchData(paris.match);
 	
 									if (matchData.winner && matchData.winner === paris.team) {
-										return updateParis(paris.match, true);
+										updateParis(paris.match, true);
 									} else if (matchData.winner && matchData.winner !== paris.team) {
-										return updateParis(paris.match, false);
+										updateParis(paris.match, false);
 									}
 								} catch (error) {
 									console.error(error);
